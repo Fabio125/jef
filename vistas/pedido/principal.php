@@ -17,5 +17,5 @@ include("../validar/sesion.php");
 
     
 </body>
-<div>Hola</div>
+<div>Hola  ddd</div>
 </html>
