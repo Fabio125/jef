@@ -22,7 +22,7 @@ class MProducto{
             $this->consulta="CALL RelacionProductosSalida(?,?)";
             $this->stmt=$this->conexion->prepare($this->consulta);
             $this->stmt->bindParam(1,$codEmpresa);
-            $this->stmt->bindParam(1,$depa1);
+            $this->stmt->bindParam(2,$depa1);
             $codEmpresa=1;
             $depa1 = $depa;            
             $this->stmt->execute();
@@ -47,7 +47,7 @@ class MProducto{
                         $dato["tipoImpuesto_lista"],
                         $dato["codTipoArticulo_lista"],
                         $dato["unidadbase_lista"],
-                        $dato["PrecioTotal_lista"],                     
+                        $dato["PrecioTotal_lista"]                    
                     );
                                      
                    array_push($producto_arreglo,$prod);	
@@ -61,7 +61,8 @@ class MProducto{
         } catch (exception $e) {
                     
             echo "Error en Operacion: " . $e->getMessage();     
-            return $usuario_arreglo;    
+            return $producto_arreglo;
+     
         }
     }
 }
