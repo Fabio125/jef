@@ -3,17 +3,31 @@
 include("../clases/Producto.php");
 include("../controladores/CProducto.php");
 
-$depa = "F1"; //$_POST["refdepa"];
-$arreglo=array();
+$depa =$_GET["refdepa"];
 $cproducto=new CProducto();
 $arreglo_productos=$cproducto->listar_poductospordepartamento($depa);
 
+$i=0;
 foreach ($arreglo_productos as $producto)
 {
-    $arreglo[] = [         
-        "codigoprod"=>$producto->get->Idproducto()          
-    ];
+   
+    $variable[$i][]=$producto->getIdproducto();
+    $variable[$i][]=$producto->getReferencia();
+    $variable[$i][]=$producto->getDescripcion();
+    $variable[$i][]=$producto->getIdunidadmedida();
+    $variable[$i][]=$producto->getDescripcionunidad();
+    $variable[$i][]=$producto->getSiglaunidad();
+    $variable[$i][]=$producto->getPrecio();
+    $variable[$i][]='<input type="number" id="cantidad" data-id-precio="'.$producto->getPrecio().'" value="0" min="1" max="1000" step="1"/>';
+    $variable[$i][]=$producto->getTipoimpuesto();
+    $variable[$i][]=$producto->getTipoarticulo();
+    $variable[$i][]=$producto->getIdunidadbase();
+    $variable[$i][]=$producto->getTotal();
+    $variable[$i][]='<button class="btn btn-outline btn-info  dim" type="button"><i class="fa fa-save"></i> </button>';
+
+    $i++;
 }
- echo json_encode($arreglo);
- 
+$total['aaData']=$variable;
+echo json_encode($total);
+
 ?>
