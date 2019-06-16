@@ -13,7 +13,7 @@ class MProducto{
     }
 
     
-    public function listar_poductospordepartamento($depa){
+    public function listar_productospordepartamento($depa){
 
         try {
                
