@@ -3,20 +3,18 @@ require_once("../modelos/MProducto.php");
 
 class CProducto{
 
-    private $producto=null;
+    private $mproducto=null;
 
     public function __construct(){
 
         $this->mproducto=new MProducto();
     }
 
-    
-
-    public function listar_poductospordepartamento($depa){
+    public function listar_productospordepartamento($depa){
 
         try {
         
-            return  $this->mproducto->listar_poductospordepartamento($depa);
+            return  $this->mproducto->listar_productospordepartamento($depa);
   
         } catch (Exception $e) {
     

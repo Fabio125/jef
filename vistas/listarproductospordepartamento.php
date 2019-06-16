@@ -5,7 +5,7 @@ include("../controladores/CProducto.php");
 
 $depa =$_GET["refdepa"];
 $cproducto=new CProducto();
-$arreglo_productos=$cproducto->listar_poductospordepartamento($depa);
+$arreglo_productos=$cproducto->listar_productospordepartamento($depa);
 
 $i=0;
 foreach ($arreglo_productos as $producto)

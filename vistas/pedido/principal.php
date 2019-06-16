@@ -188,7 +188,7 @@ include("../validar/sesion.php");
                 scrollCollapse: true,
                 "bPaginate": true,
                 "bLengthChange": true,
-                "sAjaxSource"   : "../listarpoductospordepartamento.php?refdepa=F1",
+                "sAjaxSource"   : "../listarproductospordepartamento.php?refdepa=F1",
                 "aaSorting": [[ 0, 'asc' ]],
                 "aoColumns": [
                 
@@ -233,7 +233,7 @@ include("../validar/sesion.php");
 
             $('body').on('click','#referencia',function(e){
                 var dato=$(this).attr("data-id-referencia");
-                table.ajax.url("../listarpoductospordepartamento.php?refdepa="+dato ).load();
+                table.ajax.url("../listarproductospordepartamento.php?refdepa="+dato ).load();
             });
            
            
