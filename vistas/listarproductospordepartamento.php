@@ -7,7 +7,7 @@ $depa =$_GET["refdepa"];
 $cproducto=new CProducto();
 $arreglo_productos=$cproducto->listar_productospordepartamento($depa);
 
-$i=0;
+ $i=0;
 foreach ($arreglo_productos as $producto)
 {
    
