@@ -6,6 +6,7 @@ require ("../src/autoload.php");
 include("../clases/Cliente.php");
 include("../controladores/CCliente.php");
 
+$empresa=null;
 $ndocumento="10454729485";//$_POST["documento"];
 $arreglo=array();
 $ccliente=new CCliente();
@@ -15,8 +16,13 @@ if($cliente->getIdcliente()==null){
     
     if(strlen($ndocumento)==11)
     {
-        $company = new \Sunat\Sunat( true, true );       
-        $arreglo_busqueda = $company->search( $ndocumento );   
+        $empresa = new \Sunat\Sunat( true, true );       
+        $busqueda = $empresa->search( $ndocumento );   
+
+        if($busqueda->success){
+
+            
+        }
         print_r($arreglo_busqueda);
     }
 
