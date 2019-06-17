@@ -47,11 +47,7 @@ class MProducto{
                         $dato["tipoImpuesto_lista"],
                         $dato["codTipoArticulo_lista"],
                         $dato["unidadbase_lista"],
-<<<<<<< HEAD
                         $dato["PrecioTotal_lista"]                    
-=======
-                        $dato["PrecioTotal_lista"]                     
->>>>>>> josue
                     );
                                      
                    array_push($producto_arreglo,$prod);	
