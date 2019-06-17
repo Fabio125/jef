@@ -44,7 +44,6 @@ class Producto {
         return $this->idproducto;
     }
 
-<<<<<<< HEAD
     /**
      * Set the value of idproducto
      *
@@ -276,20 +275,6 @@ class Producto {
 
         return $this;
     }
-=======
-	
-	public function setIdproducto($idproducto){
-        
-        $this->idproducto=$idproducto;
-        
-	}
-	
-	public function getIdproducto(){
-        
-        return $this->idproducto;        
-    }
-
->>>>>>> josue
 }
 
 ?>
