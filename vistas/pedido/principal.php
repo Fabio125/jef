@@ -97,7 +97,13 @@ include("../validar/sesion.php");
                     <button class="btn btn-outline btn-warning  dim" id="referencia" data-id-referencia="F9" type="button"><i class="fa fa-warning"></i> F9</button>
                     <button class="btn btn-outline btn-danger  dim "id="referencia" data-id-referencia="F10"  type="button"><i class="fa fa-heart"></i> F10</button>
                     <button class="btn btn-outline btn-warning  dim" id="referencia" data-id-referencia="F11" type="button"><i class="fa fa-warning"></i> F11</button>
-                    <button class="btn btn-outline btn-danger  dim "id="referencia" data-id-referencia="F12"  type="button"><i class="fa fa-heart"></i> F12</button>
+                    <button class="btn btn-outline btn-danger  dim "id="referencia" data-id-referencia="F12"  type="button"><i class="fa fa-heart"></i> F12</button>                    
+                    <button class="btn btn-outline btn-success  dim" id="referencia" data-id-referencia="R" type="button"><i class="fa fa-upload"></i> R</button>
+                    <button class="btn btn-outline btn-info  dim" id="referencia" data-id-referencia="G" type="button"><i class="fa fa-paste"></i> G</button>
+                    <button class="btn btn-outline btn-warning  dim" id="referencia" data-id-referencia="B" type="button"><i class="fa fa-warning"></i> B</button>
+                    <button class="btn btn-outline btn-danger  dim "id="referencia" data-id-referencia="H"  type="button"><i class="fa fa-heart"></i> H</button>
+                    <button class="btn btn-outline btn-warning  dim" id="referencia" data-id-referencia="P" type="button"><i class="fa fa-warning"></i> P</button>
+                    <button class="btn btn-outline btn-danger  dim "id="referencia" data-id-referencia="Q"  type="button"><i class="fa fa-heart"></i> Q</button>
 
                 </ol>
             </div>
@@ -122,9 +128,9 @@ include("../validar/sesion.php");
                                 <li><a href="#" class="dropdown-item">Config option 2</a>
                                 </li>
                             </ul>
-                            <a class="close-link">
+                            <!--<a class="close-link">
                                 <i class="fa fa-times"></i>
-                            </a>
+                            </a>-->
                         </div>
                     </div>
                     <div class="ibox-content">
@@ -179,7 +185,7 @@ include("../validar/sesion.php");
     <!-- iCheck -->
     <script src="../../js/plugins/iCheck/icheck.min.js"></script>
      <script>
-        var table;
+        var table,dato="F1";
         $(document).ready(function(){
             table=$('#example').DataTable({
                 pageLength: 5,
@@ -188,7 +194,7 @@ include("../validar/sesion.php");
                 scrollCollapse: true,
                 "bPaginate": true,
                 "bLengthChange": true,
-                "sAjaxSource"   : "../listarpoductospordepartamento.php?refdepa=F1",
+                "sAjaxSource"   : "../listarpoductospordepartamento.php?refdepa="+dato,
                 "aaSorting": [[ 0, 'asc' ]],
                 "aoColumns": [
                 
@@ -233,6 +239,7 @@ include("../validar/sesion.php");
 
             $('body').on('click','#referencia',function(e){
                 var dato=$(this).attr("data-id-referencia");
+              
                 table.ajax.url("../listarpoductospordepartamento.php?refdepa="+dato ).load();
             });
            
