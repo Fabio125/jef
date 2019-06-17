@@ -11,9 +11,10 @@ $arreglo_productos=$cproducto->listar_poductospordepartamento($depa);
 foreach ($arreglo_productos as $producto)
 {
     $arreglo[] = [         
-        "codigoprod"=>$producto->get$Idproducto(),            
+        "codigoprod"=>$producto->getIdproducto(),            
     ];
 }
- echo json_encode($arreglo);
+ //echo json_encode($arreglo);
+ print_r($arreglo);
  
 ?>
