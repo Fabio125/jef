@@ -22,6 +22,19 @@ class CCliente{
             return null;                   
         }
     }
+
+    public function registrar_cliente($cliente,$usuario){
+
+        try {
+        
+            return  $this->mcliente->registrar_cliente($cliente,$usuario);
+  
+        } catch (Exception $e) {
+    
+            die("Error de Conexion: " .$e->getMessage());  
+            return null;                   
+        }
+    }
 }
 ?>
 
