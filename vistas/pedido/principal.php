@@ -194,11 +194,7 @@ include("../validar/sesion.php");
                 scrollCollapse: true,
                 "bPaginate": true,
                 "bLengthChange": true,
-<<<<<<< HEAD
-                "sAjaxSource"   : "../listarproductospordepartamento.php?refdepa=F1",
-=======
-                "sAjaxSource"   : "../listarpoductospordepartamento.php?refdepa="+dato,
->>>>>>> Erwin
+                "sAjaxSource"   : "../listarproductospordepartamento.php?refdepa="+dato,
                 "aaSorting": [[ 0, 'asc' ]],
                 "aoColumns": [
                 
@@ -243,12 +239,7 @@ include("../validar/sesion.php");
 
             $('body').on('click','#referencia',function(e){
                 var dato=$(this).attr("data-id-referencia");
-<<<<<<< HEAD
                 table.ajax.url("../listarproductospordepartamento.php?refdepa="+dato ).load();
-=======
-              
-                table.ajax.url("../listarpoductospordepartamento.php?refdepa="+dato ).load();
->>>>>>> Erwin
             });
            
            
