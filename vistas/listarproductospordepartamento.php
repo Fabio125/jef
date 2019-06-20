@@ -6,7 +6,7 @@ include("../controladores/CProducto.php");
 $depa =$_GET["refdepa"];
 $cproducto=new CProducto();
 $arreglo_productos=$cproducto->listar_productospordepartamento($depa);
-
+$variable=array();
  $i=0;
 if(count($arreglo_productos)>0){
     
@@ -25,7 +25,7 @@ if(count($arreglo_productos)>0){
         $variable[$i][]=$producto->getTipoarticulo();
         $variable[$i][]=$producto->getIdunidadbase();
         $variable[$i][]=$producto->getTotal();
-        $variable[$i][]='<button class="btn btn-outline btn-info  dim" type="button"><i class="fa fa-save"></i> </button>';
+        $variable[$i][]='<button class="btn btn-outline btn-info  btn-xs" id="agregaDetalle" type="button"><i class="fa fa-save"></i> </button>';
 
         $i++;
     }
