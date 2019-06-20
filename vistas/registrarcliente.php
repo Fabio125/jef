@@ -1,22 +1,42 @@
 <?php
-include("../src/simple_html_dom.php");
+include("../clases/Usuario.php");
+include("../clases/Cliente.php");
+include("../controladores/CCliente.php");
 
-$dni ="45472948 ";// $_POST['dni'];
- 
-//OBTENEMOS EL VALOR
-$consulta = file_get_html('http://aplicaciones007.jne.gob.pe/srop_publico/Consulta/Afiliado/GetNombresCiudadano?DNI='.$dni)->plaintext;
- 
-//LA LOGICA DE LA PAGINAS ES APELLIDO PATERNO | APELLIDO MATERNO | NOMBRES
- 
-$partes = explode("|", $consulta);
- 
-$datos = array(
-0 => $dni,
-1 => $partes[0],
-2 => $partes[1],
-3 => $partes[2],
-);
- 
-print_r($datos);
-//echo json_encode($datos);
-?>
+session_start();
+
+$usuario = $_SESSION["usuario"];
+$razonsocial = ""; //$_POST["nombre"];
+$documento = ""; //$_POST["nombre"];
+$direccion = ""; //$_POST["direccion"];
+$arreglo = null;
+$cliente = null;
+$ccliente = new CCliente();
+$id = -1;
+
+
+switch (strlen($documento)) {
+
+    case 8:
+        $cliente = new Cliente(null, $razonsocial, $documento, $razonsocial, null, $direccion);
+        break;
+    case 11:
+        $cliente = new Cliente(null, $razonsocial, null, $razonsocial, $documento, $direccion);
+        break;
+}
+
+$idcliente = $ccliente->registrar_cliente($cliente, $usuario);
+if ($idcliente > 0) {
+    $cliente = $ccliente->buscar_clientexndocumento($documento);
+    $arreglo = array();
+    $arreglo[] = [
+        "codcliente" => $cliente->getIdcliente(),
+        "nombre" => $cliente->getNombre(),
+        "dni" => $cliente->getDni(),
+        "razonsocial" => $cliente->getRazonsocial(),
+        "ruc" => $cliente->getRuc(),
+        "direccion" => $cliente->getDireccionlegal()
+    ];
+}
+
+echo json_encode($arreglo);
