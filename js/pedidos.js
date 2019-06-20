@@ -82,7 +82,7 @@ objPedido={
      */
     BuscaCliente: function(){
         $.ajax({
-            url:"<?php echo base_url()?>Asistencias/Carga_asistencia",
+            url:"../vistas/listarclientepordocumento.php",
             type:"post",
             data:{"documento":00000000},   
            

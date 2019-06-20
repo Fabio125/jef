@@ -180,7 +180,9 @@ include("../validar/sesion.php");
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group"><label>Cliente </label> <input type="text" autocomplete="false" placeholder="Cliente" class="form-control" name="cliente" required></div>
+                                        <div class="form-group"><label>Cliente </label> <input type="text" autocomplete="false" placeholder="Cliente" class="form-control" name="doccliente" id="doccliente"required>
+                                        <input type="hidden" class="form-control" name="codcliente" id="codcliente" >
+                                        </div>
                                         <div class="form-group"><label>Direcci&oacute;n</label> <input type="text"  autocomplete="false" placeholder="Dirección" class="form-control" name="direccion"></div>                                        
                                         <div class="form-group"><label>Fecha Recojo</label>
                                             <div class="input-group date">
