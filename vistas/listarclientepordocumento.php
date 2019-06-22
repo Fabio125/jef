@@ -12,7 +12,7 @@ $usuario=$_SESSION["usuario"];
 $correcto=null;
 $empresa=null;
 $cliente=null;
-$ndocumento="45472948";//$_POST["documento"];
+$ndocumento=$_POST["documento"];
 $arreglo=null;
 $ccliente=new CCliente();
 $cliente=$ccliente->buscar_clientexndocumento($ndocumento);
@@ -53,9 +53,9 @@ if($cliente->getIdcliente()==null){
     }
     else if(strlen($ndocumento)==8){
 
-        $servicio = @file_get_html('http://aplicaciones007.jne.gob.pe/srop_publico/Consulta/Afiliado/GetNombresCiudadano?DNI='.$ndocumento)->plaintext;
-
-        if($servicio!=null){
+        $servicio = file_get_html("http://aplicaciones007.jne.gob.pe/srop_publico/Consulta/Afiliado/GetNombresCiudadano?DNI=".$ndocumento)->plaintext;
+     
+       // if($servicio!=null){
 
             if(strpos($servicio,"|")){
 
@@ -86,7 +86,7 @@ if($cliente->getIdcliente()==null){
                     ];
                 }
             }
-        }       
+        //}    
     }
 
 }else{
@@ -102,7 +102,7 @@ if($cliente->getIdcliente()==null){
     ];
 }
 
-print_r($arreglo);
- //echo json_encode($arreglo);
+//print_r($arreglo);
+ echo json_encode($arreglo);
 
 ?>
