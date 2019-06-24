@@ -1,7 +1,7 @@
 <?php
 include("../clases/Usuario.php");
 include("../clases/Imagen.php");
-include("../controladores/CImagen.php");
+ include("../controladores/CImagen.php");
 
 session_start();
 $arreglo=null;
