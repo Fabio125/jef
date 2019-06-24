@@ -12,11 +12,11 @@ class CPedidoVenta
         $this->mpedido=new MSerie();
     }
 
-    public function Registrar_PedidoVenta($Pedido)
+    public function Registrar_PedidoVenta($Pedido, $usuario)
     {
         try {
         
-                return  $this->mpedido->Guarda_PedidoVenta($Pedido);
+                return  $this->mpedido->Registrar_PedidoVenta($Pedido, $usuario);
       
         } catch (Exception $e) {
        
