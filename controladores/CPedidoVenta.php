@@ -1,21 +1,22 @@
 <?php 
 require_once("../modelos/MPedidoVenta.php");
+require_once("../clases/PedidoVenta.php");
 
 class CPedidoVenta
 {
 
-    private $mserie=null;
+    private $mpedido=null;
 
     public function __construct(){
 
-        $this->mserie=new MSerie();
+        $this->mpedido=new MSerie();
     }
 
-    public function Busca_Serie($codigodoc, $codigoalma)
+    public function Registrar_PedidoVenta($Pedido)
     {
         try {
         
-                return  $this->mserie->Busca_Serie($codigodoc, $codigoalma);
+                return  $this->mpedido->Guarda_PedidoVenta($Pedido);
       
         } catch (Exception $e) {
        
@@ -23,5 +24,21 @@ class CPedidoVenta
             return null;                   
         }
     }
+    
+
+    public function Busca_PedidoVenta($codigopv, $codigoalma)
+    {
+        try {
+        
+                return  $this->mpedido->Busca_PedidoVenta($codigopv, $codigoalma);
+      
+        } catch (Exception $e) {
+       
+            die("Error de Conexion: " .$e->getMessage());  
+            return null;                   
+        }
+    }
+
+
 }
 ?>
