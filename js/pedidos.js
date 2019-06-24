@@ -80,48 +80,126 @@ objPedido={
     /**
      *Busca cliente por numero de documento 
      */
-    BuscaCliente: function(){
+    BuscaCliente: function(evento){
+        var l = Ladda.create(evento);
+       
+        
         $.ajax({
-            url:"<?php echo base_url()?>Asistencias/Carga_asistencia",
+            url:"../listarclientepordocumento.php",
             type:"post",
-            data:{"documento":00000000},   
+            data:{documento: $("#doccliente").val()},   
            
             beforeSend:function(){
-               //Esperar();
+                l.start();
+                $("#buscaCliente").attr("disabled","disabled");
+               
             },
             success:function(data){                 
-                //$.unblockUI();
-                data = eval("("+data+")"); 
-                                           
-                if(typeof data.success2 != "undefined"){                     
-                    if(data.errors==0){  
-                        
-                      
-                        
-                    }else{
-                        /*swal("Error", "Whoops! Ocurrió un error durante el proceso..!", "error");               
-                        $.unblockUI();
-                        console.log(data); */ 
-                    }
+                
+                data = eval("("+data+")");
+
+                if((typeof data != "undefined") && data !=null && data !="null" && data !=""){                     
+                   
+                    l.stop();
+                    $("#buscaCliente").removeAttr("disabled");
+                    $("#codcliente").val(data[0].codcliente);
+                    $("#cliente").val(data[0].nombre);
+                    $("#direccion").val(data[0].direccion);
                 }else{
-                    /*swal("Error", "Whoops! Ocurrió un error durante el proceso..!", "error");               
-                    $.unblockUI();
-                    console.log(data);  */
+                    l.stop();
+                    $("#buscaCliente").removeAttr("disabled");
+                    toastr.options.progressBar = true; 
+                    toastr.options.positionClass = "toast-top-right"; 
+                    toastr.error('Cliente no registrado! Por favor registre manualmente');                                       
+                    $("#guardaCliente").show();
                 }
                 
                
 
              },
              error:function(data){
-                swal("Error", "Whoops! Ocurrió un error durante el proceso..!", "error");               
-                $.unblockUI();
-                console.log(data);         
+                l.stop();
+                $("#buscaCliente").removeAttr("disabled");  
+                toastr.options.progressBar = true; 
+                toastr.options.positionClass = "toast-top-left"; 
+                toastr.error('Ocurrió un problema, por favor contacte al administrador del sistema');      
                   
              }
 
 
         }); 
     
+    },
+    /**
+     * Guardar cliente
+     */
+    GuardarCliente: function(evento){
+      
+        var l = Ladda.create(evento);       
+        var doccliente=$("#doccliente").val(),
+            nomcliente=$("#cliente").val();
+        if(doccliente.length < 8 || doccliente==""){
+            toastr.error('Ingrese un documento válido');
+            $("#doccliente").focus()
+            return;
+        }  
+        if(nomcliente==""){
+            toastr.error('Ingrese un cliente válido');
+            $("#cliente").focus();
+            return;
+        }    
+            
+        $.ajax({
+            url:"../registrarcliente.php",
+            type:"post",
+            data:{documento: $("#doccliente").val(),nombre: $("#cliente").val(),direccion: $("#direccion").val()},   
+           
+            beforeSend:function(){
+                l.start();
+                $("#guardaCliente").attr("disabled","disabled");
+               
+            },
+            success:function(data){                 
+                
+                data = eval("("+data+")");
+
+                if((typeof data != "undefined") && data !=null && data !="null" && data !=""){                     
+                   
+                   
+                    $("#codcliente").val(data[0].codcliente);
+                    $("#guardaCliente").removeAttr("disabled");
+                    toastr.options.progressBar = true; 
+                    toastr.options.positionClass = "toast-top-left"; 
+                    toastr.success('Cliente registrador');
+                    $("#icono").removeClass();
+                    $("#icono").addClass('fa fa-search');
+                    $("#guardaCliente").hide();
+                    l.stop();
+                }else{
+                    l.stop();
+                    $("#guardaCliente").removeAttr("disabled");
+                    toastr.options.progressBar = true; 
+                    toastr.options.positionClass = "toast-top-left"; 
+                    toastr.error('Cliente no registrado! Por favor registre manualmente');
+                  
+                    //$("#guardaCliente").attr("id","buscaCliente");
+                }
+                
+               
+
+             },
+             error:function(data){
+                l.stop();
+                $("#guardaCliente").removeAttr("disabled");  
+                //$("#guardaCliente").attr("id","buscaCliente");
+                toastr.options.progressBar = true; 
+                toastr.options.positionClass = "toast-top-left"; 
+                toastr.error('Ocurrió un problema, por favor contacte al administrador del sistema');      
+                  
+             }
+
+
+        }); 
     }
 };
 
@@ -196,10 +274,19 @@ $(document).ready(function(){
     /**
      * Buscar cliente por tipo documento
      */
-    $("#buscaCliente").on("click",function(e){
+    $('#buscaCliente').on("click",function(e){
         e.preventDefault();
+       objPedido.BuscaCliente(this);
+        
+    });
 
-        objPedido.BuscaCliente();
+    /**
+     * Guardar Cliente
+     */
+    $('#guardaCliente').on("click",function(e){
+        e.preventDefault();
+       objPedido.GuardarCliente(this);
+        
     });
    
 });
