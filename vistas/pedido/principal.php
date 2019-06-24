@@ -174,16 +174,17 @@ include("../validar/sesion.php");
                                         <div class="form-group">
                                             <label>Documento</label> 
                                             <div class="input-group number">
-                                                <input type="text" autocomplete="false" placeholder="00000000" class="form-control" required>
+                                                <input type="text" autocomplete="false" id="doccliente" name="doccliente" placeholder="00000000" class="form-control" required>
                                                 <div class="input-group-append">
-                                                    <button class="btn btn-success" type="button" id="buscaCliente"><i class="fa fa-search"></i></button> 
+                                                    <a href="#" id="buscaCliente" class="btn btn-primary btn-lg ladda-button" data-style="slide-up" data-size="l"><span id="icono" class="fa fa-search"></span></a>
+                                                    &nbsp;<a href="#" id="guardaCliente" style="display:none" class="btn btn-info btn-lg ladda-button" data-style="slide-up" data-size="l"><span id="icono" class="fa fa-save"></span></a>                                                                                                        
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group"><label>Cliente </label> <input type="text" autocomplete="false" placeholder="Cliente" class="form-control" name="doccliente" id="doccliente"required>
+                                        <div class="form-group"><label>Cliente </label> <input type="text" autocomplete="false" placeholder="Cliente" class="form-control col-md-12" name="cliente" id="cliente" required>
                                         <input type="hidden" class="form-control" name="codcliente" id="codcliente" >
                                         </div>
-                                        <div class="form-group"><label>Direcci&oacute;n</label> <input type="text"  autocomplete="false" placeholder="Dirección" class="form-control" name="direccion"></div>                                        
+                                        <div class="form-group"><label>Direcci&oacute;n</label> <input type="text"  autocomplete="false" placeholder="Dirección" class="form-control" id="direccion"name="direccion"></div>                                        
                                         <div class="form-group"><label>Fecha Recojo</label>
                                             <div class="input-group date">
                                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" readonly class="form-control" id="fpedido" value="<?php echo date("d/m/Y")?>">
@@ -252,8 +253,6 @@ include("../validar/sesion.php");
         $(function(){
            
 
-            
-
             $('#form-submit').click(function(e){
                 e.preventDefault();
                 var l = Ladda.create(this);
@@ -269,6 +268,8 @@ include("../validar/sesion.php");
                 .always(function() { l.stop(); });
                 return false;*/
             });
+
+           
 
             
         });
