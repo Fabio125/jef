@@ -1,26 +1,26 @@
 <?php
-include("../clases/Usuario.php");
 include("../clases/Imagen.php");
 include("../controladores/CImagen.php");
 
-session_start();
 $arreglo=null;
-$usuario = $_SESSION["usuario"];
 $nombrearchivo=$_FILES["img"]["name"];
+$idimagen=$_POST["idimagen"];
 $nombre=$_POST["nombre"];
 $ruta="\\disenho\\";
 $ruta=dirname( __FILE__ ).$ruta.$nombrearchivo;
 $codigo=$_POST["codigo"];
-$idimagen=-1;
+$estado=$_POST["estado"];
+$filas_afectadas=-1;
 $imagen=null;
 $cimagen=null;
-$imagen=new Imagen(null,$nombre,$ruta,$codigo,$usuario, null);
+$imagen=new Imagen($idimagen,$nombre,$ruta,$codigo,null, $estado);
 $cimagen=new CImagen();
-$idimagen=$cimagen->Sp_registrarimagen($imagen);
+$filas_afectadas=$cimagen->Sp_actualizarimagen($imagen);
 
-if($idimagen>0){
+if($filas_afectadas>0){
 
     $subir=move_uploaded_file($_FILES["img"]["tmp_name"],$ruta);
+    
     if($subir){ 
 
             $imagen=$cimagen->Sp_listarimagen_xid($idimagen);    
@@ -35,5 +35,6 @@ if($idimagen>0){
 }
 
 echo json_encode($arreglo);
+
 
 ?>
