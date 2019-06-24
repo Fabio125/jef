@@ -137,11 +137,42 @@ include("../validar/sesion.php");
                                     </table>
                                 </div>
                             </div>
-                            <div class="col-sm-12"><h4>Not a member?</h4>
-                                <p>You can create an account:</p>
-                                <p class="text-center">
-                                    <a href="#"><i class="fa fa-sign-in big-icon"></i></a>
-                                </p>
+                            <div id="tab-7" class="tab-pane fadeInRight">
+                                <div class="panel-body">
+                                   <div class="row">
+                                        <div class="form-group">
+                                            <label>Documento</label> 
+                                            <div class="input-group number">
+                                                <input type="text" autocomplete="false" id="doccliente" name="doccliente" placeholder="00000000" class="form-control" required>
+                                                <div class="input-group-append">
+                                                    <a href="#" id="buscaCliente" class="btn btn-primary btn-lg ladda-button" data-style="slide-up" data-size="l"><span id="icono" class="fa fa-search"></span></a>
+                                                    &nbsp;<a href="#" id="guardaCliente" style="display:none" class="btn btn-info btn-lg ladda-button" data-style="slide-up" data-size="l"><span id="icono" class="fa fa-save"></span></a>                                                                                                        
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group"><label>Cliente </label> <input type="text" autocomplete="false" placeholder="Cliente" class="form-control col-md-12" name="cliente" id="cliente" required>
+                                        <input type="hidden" class="form-control" name="codcliente" id="codcliente" >
+                                        </div>
+                                        <div class="form-group"><label>Direcci&oacute;n</label> <input type="text"  autocomplete="false" placeholder="Dirección" class="form-control" id="direccion"name="direccion"></div>                                        
+                                        <div class="form-group"><label>Fecha Recojo</label>
+                                            <div class="input-group date">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" readonly class="form-control" id="fpedido" value="<?php echo date("d/m/Y")?>">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Hora Recojo</label>    
+                                            <div class="input-group clockpicker" data-autoclose="true">
+                                                <input type="text" readonly class="form-control" value="09:30" >
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-clock-o"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                   </div>
+                                   <div class="row">
+                                   <div class="form-group"><label>Dato Adicional</label><textarea id="descripcion" name="descripcion"  class="form-control col-xs-12" rows="7" cols="50" maxlength="255"></textarea></div>    
+                                   </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -215,21 +246,26 @@ include("../validar/sesion.php");
               
                 
 
+            $('#form-submit').click(function(e){
+                e.preventDefault();
+                var l = Ladda.create(this);
+                l.start();
+                setTimeout(function(){
+                    l.stop();
+                },2000)
+                /*$.post("your-url", 
+                    { data : data },
+                function(response){
+                    console.log(response);
+                }, "json")
+                .always(function() { l.stop(); });
+                return false;*/
             });
 
-            $('#example tbody ').on('keyup','#cantidad',function(e){
-                var cantidad=parseFloat($(this).val()),
-                precio=parseFloat($(this).attr("data-id-precio"));
-                calculaTotal(cantidad,precio,$(this));                
-               
-            });
+           
 
-            $('#example tbody ').on('change','#cantidad',function(e){
-                var cantidad=parseFloat($(this).val()),
-                precio=parseFloat($(this).attr("data-id-precio"));
-                calculaTotal(cantidad,precio,$(this));                
-               
-            });
+            
+        });
 
             $('body').on('click','#referencia',function(e){
                 var dato=$(this).attr("data-id-referencia");
