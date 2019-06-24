@@ -17,11 +17,6 @@ include("../validar/sesion.php");
     <link href="../../css/style.css" rel="stylesheet">
     <link href="../../css/plugins/dataTables/datatables.min.css" rel="stylesheet">
     <link href="../../css/plugins/touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet">
-    <link href="../../css/plugins/toastr/toastr.min.css" rel="stylesheet">
-    <link href="../../css/plugins/datapicker/datepicker3.css" rel="stylesheet">
-    <link href="../../css/plugins/clockpicker/clockpicker.css" rel="stylesheet">
-     <!-- Ladda style -->
-     <link href="../../css/plugins/ladda/ladda-themeless.min.css" rel="stylesheet">
 
     <!--<link href="css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">-->
 
@@ -88,9 +83,9 @@ include("../validar/sesion.php");
         </nav>
         </div>
         <div class="row">
-            <div class="col-lg-12" >                
+            <div class="col-lg-10">                
               
-                <ol class="breadcrumb flex-row flex-nowrap" style="overflow: scroll;" >
+                <ol class="breadcrumb">
                     <button class="btn btn-outline btn-primary dim" id="referencia" data-id-referencia="F1" type="button"><i class="fa fa-check"></i> F1</button>
                     <button class="btn btn-outline btn-success  dim" id="referencia" data-id-referencia="F2" type="button"><i class="fa fa-upload"></i> F2</button>
                     <button class="btn btn-outline btn-info  dim" id="referencia" data-id-referencia="F3" type="button"><i class="fa fa-paste"></i> F3</button>
@@ -102,114 +97,58 @@ include("../validar/sesion.php");
                     <button class="btn btn-outline btn-warning  dim" id="referencia" data-id-referencia="F9" type="button"><i class="fa fa-warning"></i> F9</button>
                     <button class="btn btn-outline btn-danger  dim "id="referencia" data-id-referencia="F10"  type="button"><i class="fa fa-heart"></i> F10</button>
                     <button class="btn btn-outline btn-warning  dim" id="referencia" data-id-referencia="F11" type="button"><i class="fa fa-warning"></i> F11</button>
-                    <button class="btn btn-outline btn-danger  dim "id="referencia" data-id-referencia="F12"  type="button"><i class="fa fa-heart"></i> F12</button>                    
-                    <button class="btn btn-outline btn-success  dim" id="referencia" data-id-referencia="R" type="button"><i class="fa fa-upload"></i> R</button>
-                    <button class="btn btn-outline btn-info  dim" id="referencia" data-id-referencia="G" type="button"><i class="fa fa-paste"></i> G</button>
-                    <button class="btn btn-outline btn-warning  dim" id="referencia" data-id-referencia="B" type="button"><i class="fa fa-warning"></i> B</button>
-                    <button class="btn btn-outline btn-danger  dim "id="referencia" data-id-referencia="H"  type="button"><i class="fa fa-heart"></i> H</button>
-                    <button class="btn btn-outline btn-warning  dim" id="referencia" data-id-referencia="P" type="button"><i class="fa fa-warning"></i> P</button>
-                    <button class="btn btn-outline btn-danger  dim "id="referencia" data-id-referencia="Q"  type="button"><i class="fa fa-heart"></i> Q</button>
+                    <button class="btn btn-outline btn-danger  dim "id="referencia" data-id-referencia="F12"  type="button"><i class="fa fa-heart"></i> F12</button>
 
                 </ol>
             </div>
           
         </div>
         <div class="wrapper wrapper-content animated fadeInRight">
-            <div class="tabs-container">
-                <form id="fmrPedido" name="frmPedido" method="post">
-                    <div class="tabs">
-                        <ul class="nav nav-tabs">
-                            <li><a class="nav-link active" data-toggle="tab" href="#tab-6"> Pedidos</a></li>
-                            <li><a class="nav-link" data-toggle="tab" href="#tab-7">Datos adicionales</a></li>
-                        </ul>
-                        <div class="tab-content ">
-                            <div id="tab-6" class="tab-pane active fadeInRight">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="ibox ">                                           
-                                                <div class="row">
-                                                    <div class="col-sm-12 b-r">
-                                                        <div class="table-responsive">
-                                                            <table  id="example" class="table table-striped table-bordered table-hover dataTables-example" >
-                                                        
-                                                        
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-12">
-                                                        <div class="table-responsive">
-                                                            <table class="table table-hover" id="tablaDetalle">
-                                                                <thead>
-                                                                <tr>
-                                                                    <th>#</th>
-                                                                    <th>Descripci&oacute;n</th>
-                                                                    <th>IdUnidad</th>
-                                                                    <th>Unidad</th>
-                                                                    <th>Cantidad</th>
-                                                                    <th>Precio</th>
-                                                                    <th>Total</th>
-                                                                    <th>#</th>
-                                                                </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                                                    
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>                                           
-                                            </div>
-                                        </div>               
-                                    </div>
-                                    <div class="text-center">
-                                        <a href="#" id="form-submit" class="btn btn-primary btn-lg ladda-button" data-style="slide-up" data-size="l"><span class="ladda-label">Guardar</span></a>
-                                        <button type="reset"  class="btn btn-danger btn-lg ">Cancelar</button>
-                                    </div> 
-                                </div>
-                            </div>
-                            <div id="tab-7" class="tab-pane fadeInRight">
-                                <div class="panel-body">
-                                   <div class="row">
-                                        <div class="form-group">
-                                            <label>Documento</label> 
-                                            <div class="input-group number">
-                                                <input type="text" autocomplete="false" id="doccliente" name="doccliente" placeholder="00000000" class="form-control" required>
-                                                <div class="input-group-append">
-                                                    <a href="#" id="buscaCliente" class="btn btn-primary btn-lg ladda-button" data-style="slide-up" data-size="l"><span id="icono" class="fa fa-search"></span></a>
-                                                    &nbsp;<a href="#" id="guardaCliente" style="display:none" class="btn btn-info btn-lg ladda-button" data-style="slide-up" data-size="l"><span id="icono" class="fa fa-save"></span></a>                                                                                                        
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group"><label>Cliente </label> <input type="text" autocomplete="false" placeholder="Cliente" class="form-control col-md-12" name="cliente" id="cliente" required>
-                                        <input type="hidden" class="form-control" name="codcliente" id="codcliente" >
-                                        </div>
-                                        <div class="form-group"><label>Direcci&oacute;n</label> <input type="text"  autocomplete="false" placeholder="Dirección" class="form-control" id="direccion"name="direccion"></div>                                        
-                                        <div class="form-group"><label>Fecha Recojo</label>
-                                            <div class="input-group date">
-                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" readonly class="form-control" id="fpedido" value="<?php echo date("d/m/Y")?>">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Hora Recojo</label>    
-                                            <div class="input-group clockpicker" data-autoclose="true">
-                                                <input type="text" readonly class="form-control" value="09:30" >
-                                                <span class="input-group-addon">
-                                                    <span class="fa fa-clock-o"></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                   </div>
-                                   <div class="row">
-                                   <div class="form-group"><label>Dato Adicional</label><textarea id="descripcion" name="descripcion"  class="form-control col-xs-12" rows="7" cols="50" maxlength="255"></textarea></div>    
-                                   </div>
-                                </div>
-                            </div>
-                        </div>                        
+            <div class="row">
+                <div class="col-lg-12">
+                <div class="ibox ">
+                    <div class="ibox-title">
+                        <h5>Pedidos</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="#" class="dropdown-item">Config option 1</a>
+                                </li>
+                                <li><a href="#" class="dropdown-item">Config option 2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
                     </div>
-                    
-                </form>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-12 b-r">
+                                 <div class="table-responsive">
+                                    <table  id="example" class="table table-striped table-bordered table-hover dataTables-example" >
+                                   
+                                   
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-sm-12"><h4>Not a member?</h4>
+                                <p>You can create an account:</p>
+                                <p class="text-center">
+                                    <a href="#"><i class="fa fa-sign-in big-icon"></i></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+               
+            </div>           
         </div>
         <div class="footer">
             <div class="float-right">
@@ -236,45 +175,89 @@ include("../validar/sesion.php");
     <!-- Custom and plugin javascript -->
     <script src="../../js/inspinia.js"></script>
     <script src="../../js/plugins/pace/pace.min.js"></script>
-    <script src="../../js/plugins/toastr/toastr.min.js"></script>
-     <!-- Ladda -->
-     <script src="../../js/plugins/ladda/spin.min.js"></script>
-    <script src="../../js/plugins/ladda/ladda.min.js"></script>
-    <script src="../../js/plugins/ladda/ladda.jquery.min.js"></script>
-     <!-- Data picker -->
-    <script src="../../js/plugins/datapicker/bootstrap-datepicker.js"></script>
-    <!-- Clock picker -->
-    <script src="../../js/plugins/clockpicker/clockpicker.js"></script>
+
     <!-- iCheck -->
     <script src="../../js/plugins/iCheck/icheck.min.js"></script>
-    <script src="../../js/pedidos.js"></script>
-    
-    <script>
-        $(function(){
-           
+     <script>
+        var table;
+        $(document).ready(function(){
+            table=$('#example').DataTable({
+                pageLength: 5,
+                responsive: true,
+                scrollY:        '50vh',
+                scrollCollapse: true,
+                "bPaginate": true,
+                "bLengthChange": true,
+                "sAjaxSource"   : "../listarproductospordepartamento.php?refdepa=F1",
+                "aaSorting": [[ 0, 'asc' ]],
+                "aoColumns": [
+                
+                    { "sTitle": "ID"},
+                    { "sTitle": "Referencia"},
+                    { "sTitle": "Descipción"},  
+                    { "sTitle": "IdUnidadMedida"},            
+                    { "sTitle": "Unidad"},  
+                    { "sTitle": "Siglaunidad" }, 
+                    { "sTitle": "Precio"},
+                    { "sTitle": "Cantidad"},
+                    { "sTitle": "TipoImpuesto"},  
+                    { "sTitle": "TipoArticulo"},            
+                    { "sTitle": "UnidadBase"},  
+                    { "sTitle": "Total" }, 
+                    { "sTitle": "Opción","sWidth": "70px" , "sClass": "center"}
+                ], "columnDefs": [
+                    {
+                        "targets": [ 0,1,3,5,8,9,10 ],
+                        "visible": false,
+                        "searchable": false
+                    }
+                ]
+              
+                
 
-            $('#form-submit').click(function(e){
-                e.preventDefault();
-                var l = Ladda.create(this);
-                l.start();
-                setTimeout(function(){
-                    l.stop();
-                },2000)
-                /*$.post("your-url", 
-                    { data : data },
-                function(response){
-                    console.log(response);
-                }, "json")
-                .always(function() { l.stop(); });
-                return false;*/
             });
 
+            $('#example tbody ').on('keyup','#cantidad',function(e){
+                var cantidad=parseFloat($(this).val()),
+                precio=parseFloat($(this).attr("data-id-precio"));
+                calculaTotal(cantidad,precio,$(this));                
+               
+            });
+
+            $('#example tbody ').on('change','#cantidad',function(e){
+                var cantidad=parseFloat($(this).val()),
+                precio=parseFloat($(this).attr("data-id-precio"));
+                calculaTotal(cantidad,precio,$(this));                
+               
+            });
+
+            $('body').on('click','#referencia',function(e){
+                var dato=$(this).attr("data-id-referencia");
+                table.ajax.url("../listarproductospordepartamento.php?refdepa="+dato ).load();
+            });
            
-
-            
+           
         });
-
-       
+           
+           function calculaTotal(cantidad,precio,dato){
+                var total=0;
+                total= parseFloat(cantidad * precio);
+              
+                var cells = dato.closest('tr').children('td');
+                if(isNaN(total)){
+                    cells.eq(4).text("0.00");
+                }else{
+                    cells.eq(4).text((total));
+                }
+                
+           }
+      
+    </script>
+    <input type="number" value="1" min="1" max="1000" step="1"/>
+    <script>
+        $(function(){
+            $("body input[type='number']").ready().inputSpinner();
+        });
       
     </script>
     <style>
