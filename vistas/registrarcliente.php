@@ -6,9 +6,9 @@ include("../controladores/CCliente.php");
 session_start();
 
 $usuario = $_SESSION["usuario"];
-$razonsocial = ""; //$_POST["nombre"];
-$documento = ""; //$_POST["nombre"];
-$direccion = ""; //$_POST["direccion"];
+$razonsocial = $_POST["nombre"];
+$documento = $_POST["documento"];
+$direccion = $_POST["direccion"];
 $arreglo = null;
 $cliente = null;
 $ccliente = new CCliente();

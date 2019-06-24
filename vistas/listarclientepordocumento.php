@@ -53,9 +53,9 @@ if($cliente->getIdcliente()==null){
     }
     else if(strlen($ndocumento)==8){
 
-        $servicio = file_get_html("http://aplicaciones007.jne.gob.pe/srop_publico/Consulta/Afiliado/GetNombresCiudadano?DNI=".$ndocumento)->plaintext;
+        $servicio = @file_get_html("http://aplicaciones007.jne.gob.pe/srop_publico/Consulta/Afiliado/GetNombresCiudadano?DNI=".$ndocumento)->plaintext;
      
-       // if($servicio!=null){
+        if($servicio!=null){
 
             if(strpos($servicio,"|")){
 
@@ -86,7 +86,7 @@ if($cliente->getIdcliente()==null){
                     ];
                 }
             }
-        //}    
+        }    
     }
 
 }else{
