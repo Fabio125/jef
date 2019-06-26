@@ -22,7 +22,8 @@ $usuario=$cusuario->buscar_usuarioxcuentaclave(new Usuario(
 
 if($usuario!=null){
 
-    $arreglo[] = [         
+    $arreglo[] = [   
+              
             "idusuario"=>$usuario->getIdusuario(),
             "cuenta"=>$usuario->getCuenta(),     
             "clave"  =>$usuario->getClave(),

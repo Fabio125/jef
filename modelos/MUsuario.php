@@ -36,7 +36,7 @@ class MUsuario{
                     $usu=new Usuario(
                         $this->dato["codUsuario"],
                         null,
-                        null,
+                        $this->dato["nombre"],
                         null,
                         null,
                         $usuario->getCuenta(),

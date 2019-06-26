@@ -8,7 +8,7 @@ include("../validar/sesion.php");
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>INSPINIA | Basic Form</title>
+    <title>PASTER PAN | PEDIDOS</title>
 
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
     <link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -21,7 +21,9 @@ include("../validar/sesion.php");
     <link href="../../css/plugins/datapicker/datepicker3.css" rel="stylesheet">
     <link href="../../css/plugins/clockpicker/clockpicker.css" rel="stylesheet">
      <!-- Ladda style -->
-     <link href="../../css/plugins/ladda/ladda-themeless.min.css" rel="stylesheet">
+    <link href="../../css/plugins/ladda/ladda-themeless.min.css" rel="stylesheet">
+       <!-- Sweet Alert -->
+    <link href="../../css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
 
     <!--<link href="css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">-->
 
@@ -38,34 +40,33 @@ include("../validar/sesion.php");
                     <div class="dropdown profile-element">
                         <!--<img alt="image" class="rounded-circle" src=""/>-->
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="block m-t-xs font-bold">David Williams</span>
-                            <span class="text-muted text-xs block">Art Director <b class="caret"></b></span>
+                            <span class="block m-t-xs font-bold"><?php $usu=$_SESSION["usuario"]; echo $usu->getNombreapellido();?></span>
+                            
                         </a>
-                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a class="dropdown-item" href="profile.html">Profile</a></li>
-                            <li><a class="dropdown-item" href="contacts.html">Contacts</a></li>
-                            <li><a class="dropdown-item" href="mailbox.html">Mailbox</a></li>
-                            <li class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="login.html">Logout</a></li>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">                          
+                            <li><a class="dropdown-item" href="../validar/cerrarsesion.php">Salir</a></li>
                         </ul>
                     </div>
                     <div class="logo-element">
-                        IN+
+                       Master Pan
                     </div>
                 </li>
                 <li>
-                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
+                    <a href="principal.php"><i class="fa fa-th-large"></i> <span class="nav-label">Entidades</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="index.html">Dashboard v.1</a></li>
-                        <li><a href="dashboard_2.html">Dashboard v.2</a></li>
+                       <li><a href="imagenes.php">Imagenes</a></li>
+                        <!--<li><a href="dashboard_2.html">Dashboard v.2</a></li>
                         <li><a href="dashboard_3.html">Dashboard v.3</a></li>
                         <li><a href="dashboard_4_1.html">Dashboard v.4</a></li>
-                        <li><a href="dashboard_5.html">Dashboard v.5 </a></li>
+                        <li><a href="dashboard_5.html">Dashboard v.5 </a></li>-->
                     </ul>
                 </li>  
                 <li class="special_link">
-                    <a href="package.html"><i class="fa fa-database"></i> <span class="nav-label">Package</span></a>
+                    <a href="principal.php"><i class="fa fa-shopping-cart"></i> <span class="nav-label">Pedidos</span></a>
                 </li>
+                <!--<li class="special_link">
+                    <a href="listapedido.php"><i class="fa fa-clipboard"></i> <span class="nav-label">Lista Pedidos</span></a>
+                </li>-->
             </ul>
 
         </div>
@@ -79,8 +80,8 @@ include("../validar/sesion.php");
             </div>
             <ul class="nav navbar-top-links navbar-right">  
                 <li>
-                    <a href="#">
-                        <i class="fa fa-sign-out"></i> Log out
+                    <a href="../validar/cerrarsesion.php">
+                        <i class="fa fa-sign-out"></i> Salir
                     </a>
                 </li>
             </ul>
@@ -212,11 +213,9 @@ include("../validar/sesion.php");
             </div>
         </div>
         <div class="footer">
-            <div class="float-right">
-                10GB of <strong>250GB</strong> Free.
-            </div>
+           
             <div>
-                <strong>Copyright</strong> Example Company &copy; 2014-2018
+                <strong>Copyright</strong> Master Pan &copy; <?php echo date("Y");?>
             </div>
         </div>
 
@@ -248,6 +247,8 @@ include("../validar/sesion.php");
     <!-- iCheck -->
     <script src="../../js/plugins/iCheck/icheck.min.js"></script>
     <script src="../../js/pedidos.js"></script>
+      <!-- Sweet alert -->
+    <script src="../../js/plugins/sweetalert/sweetalert.min.js"></script>
     
     <script>
         $(function(){
@@ -259,14 +260,23 @@ include("../validar/sesion.php");
                 l.start();
                 setTimeout(function(){
                     l.stop();
-                },2000)
-                /*$.post("your-url", 
-                    { data : data },
-                function(response){
-                    console.log(response);
-                }, "json")
-                .always(function() { l.stop(); });
-                return false;*/
+                    swal({
+                        title: "Seguro de registrar pedido?",
+                        text: "Verifique datos del pedido!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Si",
+                        closeOnConfirm: false
+                    }, function () {
+                        swal("Mensaje!", "Pedido registrado correctamente", "success");
+                        setTimeout(function(){
+                            window.location.href = 'principal.php';
+                        },3000);
+                    });
+                   
+                },1000);
+             
             });
 
            

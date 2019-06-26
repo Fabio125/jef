@@ -2,5 +2,5 @@
  session_start();
  unset($_SESSION["usuario"]); 
  session_destroy();
- echo 1;
+ header("Location: ../../index.php"); 
 ?>

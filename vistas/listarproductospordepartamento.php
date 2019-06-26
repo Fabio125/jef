@@ -25,7 +25,7 @@ if(count($arreglo_productos)>0){
         $variable[$i][]=$producto->getTipoarticulo();
         $variable[$i][]=$producto->getIdunidadbase();
         $variable[$i][]=$producto->getTotal();
-        $variable[$i][]='<button class="btn btn-outline btn-info  btn-xs" id="agregaDetalle" type="button"><i class="fa fa-save"></i> </button>';
+        $variable[$i][]='<button class="btn btn-outline btn-info  btn-md" id="agregaDetalle" type="button"><i class="fa fa-save"></i> </button>';
 
         $i++;
     }

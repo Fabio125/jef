@@ -62,9 +62,9 @@ objPedido={
         fila+='<td><b>'+data[6]+'</b></td>';
         fila+='<td><b>'+currentRow.find("input").val()+'</b></td>';
         fila+='<td><b>'+parseFloat(tTotal)+'</b></td>'; //Captura total
-        fila+='<td><button class="btn btn-outline btn-danger  btn-xs" id="borrarDetalle" type="button"><i class="fa fa-minus-circle"></i> </button></td>';
+        fila+='<td><button class="btn btn-outline btn-danger  btn-md" id="borrarDetalle" type="button"><i class="fa fa-minus-circle"></i> </button></td>';
         fila+='</tr>';
-       
+        currentRow.find("input").val("0")
        if(parseFloat(tTotal)<=0){
             toastr.options.progressBar = true; 
             toastr.options.positionClass = "toast-top-left"; 
@@ -110,7 +110,10 @@ objPedido={
                     $("#buscaCliente").removeAttr("disabled");
                     toastr.options.progressBar = true; 
                     toastr.options.positionClass = "toast-top-right"; 
-                    toastr.error('Cliente no registrado! Por favor registre manualmente');                                       
+                    toastr.error('Cliente no registrado! Por favor registre manualmente');
+                    $("#codcliente").val("");
+                    $("#cliente").val("");
+                    $("#direccion").val("");                                       
                     $("#guardaCliente").show();
                 }
                 

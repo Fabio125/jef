@@ -10,17 +10,16 @@ $arreglo=null;
 if(sizeof($arreglo_imagen)>0){
 
     $arreglo=array();
-
+    $i=0;
     foreach($arreglo_imagen as $imagen){
-
-        $arreglo[]=[
-                "idimagen" => $imagen->getIdimagen(),
-                "nombre"=> $imagen->getNombre(),
-                "ruta"=> $imagen->getRuta(),
-                "codigo"=> $imagen->getCodigo()
-        ];
+        $variable[$i][]=$imagen->getIdimagen();
+        $variable[$i][]=$imagen->getNombre();
+        $variable[$i][]=$imagen->getRuta();//'<img src="'.$imagen->getRuta().'"> ';
+        $variable[$i][]='';
+        $i++;
     }
 }
 
-echo json_encode($arreglo);
+$total['aaData']=$variable;
+echo json_encode($total);
 ?>
